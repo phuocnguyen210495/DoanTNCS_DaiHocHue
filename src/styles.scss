@@ -1,0 +1,400 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$app-primary: mat-palette($mat-indigo);
+$app-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$app-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$app-theme: mat-light-theme((
+  color: (
+    primary: $app-primary,
+    accent: $app-accent,
+    warn: $app-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($app-theme);
+
+/* ========================================================================= */
+/* Reset CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* ========================================================================= */
+/* Atomic CSS */
+.txt-left   { text-align: left      }
+.txt-right  { text-align: right     }
+.txt-center { text-align: center    }
+.fl         { float: left           }
+.fr         { float: right          }
+.w100       { width: 100%           }
+.w80{
+    width: 80%;
+    margin-left: 10%; 
+    margin-right: 10%
+}
+.h100           { height: 100%          }
+.blck           { display: block        }
+.iblck          { display: inline-block }
+.padd0          { padding: 0px          }
+.paddt0         { padding-top: 0px      }
+.paddr0         { padding-right: 0px    }
+.paddb0         { padding-bottom: 0px   }
+.paddl0         { padding-left: 0px     }
+.marg0          { margin: 0px           }
+.margt0         { margin-top: 0px       }
+.margr0         { margin-right: 0px     }
+.margb0         { margin-bottom: 0px    }
+.margl0         { margin-left: 0px      }
+.border0        { border: 0px           }
+.outline0       { outline: 0px          }
+.align--center  { align-self: center    }
+// CH_Style 
+.chs--shadow    { box-shadow:1px 3px 6px #46363659 }
+.chs--radius    { border-radius: 10px                }
+
+/* ========================================================================= */
+/* Responsive things */
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins/_breakpoints';
+
+.oxl,.olg,.omd,.osm,.oxs{} // Only
+.exl,.elg,.emd,.esm,.exs{} // Except
+
+@include media-breakpoint-only(xl){
+    .oxl{ display: block }
+    .exl,.olg,.omd,.osm,.oxs{ display: none !important}
+}
+@include media-breakpoint-only(lg){
+	.olg{ display: block }
+	.elg,.oxl,.omd,.osm,.oxs{ display: none !important}
+}
+@include media-breakpoint-only(md){
+	.omd{ display: block }
+	.emd,.oxl,.olg,.osm,.oxs{ display: none !important}
+}
+@include media-breakpoint-only(sm){
+	.osm{ display: block }
+	.esm,.oxl,.olg,.omd,.oxs{ display: none !important}
+}
+@include media-breakpoint-only(xs){
+	.oxs{ display: block }
+	.exs,.oxl,.olg,.omd,.osm{ display: none !important}
+}
+
+/* ========================================================================= */
+/* Fonts */
+@font-face{
+	font-family: mulish;
+	src: url(assets/fonts/Mulish/static/Mulish-Regular.ttf);
+}
+
+/* ========================================================================= */
+/* Global SCSS */
+*{
+	font-family: mulish;
+}
+body,html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.body{
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 350px;
+}
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 350px;
+}
+
+$main-color : #04468B;
+$second-color : #A00000;
+$second-light-color : #D70101;
+.btn{ 
+    border-radius: 3px;
+    text-align: center;
+}
+.btn-main{
+    background: $main-color;
+    color: #fff;
+}
+
+// Homepage
+.main{
+    margin: 14px 0px;
+    section{
+        border-radius: 10px;
+        margin-bottom: 14px;
+        .title{
+            width: 100%;
+            padding: 14px 28px;
+            margin: 0px;
+            background: $main-color;
+            color: #fff;
+            text-transform: uppercase;
+            border-radius: 10px 10px 0px 0px;
+        }
+        .content{
+            min-height: 10px;
+            background: #fff;
+            padding: 0px 28px 28px 28px;
+            border-radius: 0px 0px 10px 10px;
+
+            ul{
+                li{
+                    padding: 14px 0px;
+                    border-bottom: 1px dashed #ddd;
+                    .d-flex{
+                        margin-bottom: 0px;
+                        a{
+                            color: #5A5A5A;
+                            text-decoration: none;
+                            font-weight: 600;
+                            font-size: 15px;
+                            &:hover{ color: $second-color }
+                        }
+                        .deco{
+                            margin-left: 3px;
+                            margin-bottom: 0px;
+                            width: 30px;
+                            height: 25px;
+                            background-image: url('assets/imgs/newlogo.png');
+                            background-size: cover;
+                            background-position: center center;
+                        }
+                    }
+                   .publishdate{
+                       font-size: 12px;
+                       
+                   }
+                }
+            }
+        }
+        .readmore{
+            margin-top: 14px;
+            color: $main-color;
+            font-weight: 600;
+            font-style: italic;
+            font-size: 16px;
+        }
+    }
+}
+// Right-sidebar
+.right-sidebar{
+    margin: 14px 0px;
+    .widget{
+        border-radius: 7px;
+        margin-bottom: 14px;
+        box-shadow:1px 3px 6px #00000059;
+        .title{
+            width: 100%;
+            padding: 14px 14px;
+            text-align: center;
+            margin-bottom: 0px;
+            background: $main-color;
+            color: #fff;
+            text-transform: uppercase;
+            border-radius: 10px 10px 0px 0px;
+        }
+        .content{
+            min-height: 10px;
+            background: #fff;
+            border-radius: 0px 0px 10px 10px;
+            padding: 10px 20px 10px 20px;
+            ul{
+                li{
+                    margin-bottom: 7px;
+                    a{
+                        color: #000;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Pages
+.page{
+    margin-top: 14px;
+    background: #fff;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.2);
+    border-radius: 7px;
+    .page_title{
+        padding: 14px 28px;
+        width: 100%;
+        background: $main-color;
+        color: #fff;
+        font-size: 20px;
+        margin-bottom: 14px;
+        text-transform: uppercase;
+        border-radius: 7px 7px 0px 0px;
+        text-align: center;
+        @media screen and (max-width: 575.98px){
+            font-size: 16px;
+        }
+    }
+}
+
+// Msg
+.msg{
+    font-size: 12px;
+    margin: 0px;
+    padding: 0px;
+}
+.msg-error{
+    color: $second-color
+}
+
+// Modal
+.modal{
+    padding: 0px !important;
+    .modal-content{
+        padding: 14px 28px;
+        .modal-title{
+            font-weight: 500;
+            font-size: 20px
+        }
+        .modal-title-success{
+            color: green
+        }
+        form{
+            label{
+                font-weight: 600;
+                margin-bottom: 5px;
+                color: $main-color
+            }
+            input{
+                margin-bottom: 7px;
+            }
+        }
+        .btn{
+            display: inline-block;
+            @media (max-width: 767.98px){
+                width: 100%
+            }
+        }
+    }
+    .modal-dialog-fullscreen{
+        margin: 7px;
+        max-width: 100%;
+    }
+}
+
+// Input, select
+.custom-form-control{
+    background: #EEF7FF;
+    color: #000;
+    font-size: 15px;
+    &:focus{
+        background: #FFFEC7;
+        border: 0px;
+        box-shadow: 0px 0px 0px 0px #000;
+        outline: none;
+    }
+}
+.custom-label{
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+.custom-input,.custom-textarea,.custom-select{
+    width: 100%;
+    border: 0px;
+    border-radius: 3px;
+    margin-bottom: 14px;
+}
+.custom-input,.custom-textarea{
+    padding: 10px
+}
+.custom-textarea{
+    resize: none ;
+    height: 112px 
+}
+.custom-select{
+    // hide default arrow
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    // stylish arrow
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
+    background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+    background-repeat: no-repeat;
+    &:focus{
+        background-image:linear-gradient(45deg, black 50%, transparent 50%), linear-gradient(135deg, transparent 50%, black 50%),linear-gradient(to right, #ccc, #ccc);
+        background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em, calc(100% - 2.5em) 0.5em;
+        background-size: 5px 5px, 5px 5px,1px 1.5em;
+        background-repeat: no-repeat;
+        outline: 0;
+        border: 0px;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+}
+.locked{
+    background: #E3E3E3;
+    &:focus{
+        background: #E3E3E3;
+    }
+}

@@ -1,0 +1,77 @@
+<div class="blck w100 page inters">
+    <h1 class="page_title">Quản lý liên chi đoàn</h1>
+    <div class="page_content">
+        <!-- Menu -->
+        <div class="container-fluid menu">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-6 col-sm-8 col-8 padd0">
+                    <input 
+                        type="text"
+                        class="form-control custom-form-control custom-input searchInput"
+                        [(ngModel)]="filterTerm"
+                        placeholder="Tìm kiếm liên chi đoàn"
+                    >
+                </div>
+                <div class="col-xl-1 col-lg-1 col-md-2 col-sm-4 col-4 padd0">
+                    <button type="button" [ngClass]="['btn','btn-main','searchButton']">Tìm</button>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 button-wrapper">
+                    <a 
+                        [routerLink]="['/manager/inter-add']" 
+                        class="btn btn-success"
+                    >
+                        <fa-icon [icon]="plusIcon" ></fa-icon>
+                        Tạo mới
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- end menu -->
+
+        <!-- Faketable -->
+        <div class="container-fluid faketable">
+            <div class="row esm exs thead">
+                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6 col-12 txt-center td">
+                    <p>Tên liên chi đoàn</p>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6 col-12 txt-center td">
+                    <p>Trưởng liên chi đoàn</p>
+                </div>
+                <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6 col-12 txt-center emd td">
+                    <p>Chi đoàn</p>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 txt-center emd td">
+                    <p>Ngày thành lập</p>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 txt-center td"></div>
+            </div>
+            <div class="tbody">
+                <div class="row justify-content-middle tr" *ngFor="let inter of inters| filter: filterTerm">
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6 col-12 txt-center td">
+                        <p><strong class="exl elg emd">Liên chi đoàn </strong>{{ inter.name }}</p>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6 col-12 txt-center td">
+                        <p><strong class="exl elg emd">Trưởng liên chi đoàn </strong>{{ inter.leader }}</p>
+                    </div>
+                    <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6 col-12 txt-center emd td">
+                        <p><strong class="exl elg emd">Chi đoàn </strong>{{ inter.branchs }}</p>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 txt-center emd td">
+                        <p><strong class="exl elg emd">Ngày thành lập </strong>{{ inter.createdate }}</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 padd0 td">
+                        <a [routerLink]="['/manager/inter-edit']" class="btn btn-light">Sửa</a>
+                        <button type="button" class="btn btn-danger">Xóa</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <app-pagination></app-pagination>
+            <!-- end pagination -->
+
+            <app-inter-delete></app-inter-delete>   
+        </div>
+        <!-- end faketable -->
+    </div><!-- end page content -->
+</div>

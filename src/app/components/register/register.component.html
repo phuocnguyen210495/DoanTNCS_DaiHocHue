@@ -1,0 +1,128 @@
+<div class="blck w100 page register">
+    <h1 class="page_title">Đăng ký</h1>
+    <form [formGroup]="register_form">
+        <div class="row">
+            <div class="col-12">
+                <label class="custom-label"  for="studentCode">Mã số sinh viên</label>
+                <input  
+                    type="text"
+                    placeholder="42.01.100.100"
+                    formControlName="studentCode"
+                    id="studentCode" 
+                    [ngClass]="['form-control','custom-form-control','custom-input']"    
+                >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12 ">
+                <label class="custom-label"  for="lastName">Họ</label>
+                <input  
+                    type="text"
+                    placeholder="Nguyễn"
+                    formControlName="lastName"
+                    id="lastName" 
+                    [ngClass]="['form-control','custom-form-control','custom-input']"    
+                >
+            </div>
+        
+            <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+                <label class="custom-label"  for="middleName">Tên đệm</label>
+                <input  
+                    type="text"
+                    placeholder="Thiện"
+                    formControlName="middleName"
+                    id="middleName" 
+                    [ngClass]="['form-control','custom-form-control','custom-input']"    
+                >
+            </div>
+            
+            <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+                <label class="custom-label"  for="firstName">Tên</label>
+                <input  
+                    type="text"
+                    placeholder="Thuật"
+                    formControlName="firstName"
+                    id="firstName" 
+                    [ngClass]="['form-control','custom-form-control','custom-input']"    
+                >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                <label class="custom-label"  for="phoneNumber">Số điện thoại</label>
+                <input  
+                    type="text"
+                    placeholder="0523187254"
+                    formControlName="phoneNumber"
+                    id="phoneNumber" 
+                    [ngClass]="['form-control','custom-form-control','custom-input']"    
+                >
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                <label class="custom-label"  for="email">Email</label>
+                <input  
+                    type="email"
+                    placeholder="nguyenthienthuat@gmail.com"
+                    formControlName="email"
+                    id="email" 
+                    [ngClass]="['form-control','custom-form-control','custom-input']"    
+                >
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12"><label class="custom-label"  for="studentPassword">Mật khẩu đăng nhập</label></div>
+            <div class="col-11">
+                <input 
+                    [type]="hidePassword ? 'password' : 'text'" 
+                    formControlName="studentPassword" 
+                    id="studentPassword" 
+                    [ngClass]="['form-control','custom-form-control','custom-input']"
+                >
+            </div>
+            <div class="col-1 padd0 txt-left">
+                <button (click)="hidePassword = !hidePassword" class="buttonHide">
+                    <fa-icon *ngIf="hidePassword" [icon]="eyeIcon"></fa-icon>
+                    <fa-icon *ngIf="!hidePassword" [icon]="eyeSlashIcon"></fa-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12"><label class="custom-label"  for="confirmPassword">Xác nhận mật khẩu</label></div>
+            <div class="col-11">
+                <input 
+                    [type]="hideConfirmPassword ? 'password' : 'text'" 
+                    formControlName="confirmPassword" 
+                    id="confirmPassword" 
+                    [ngClass]="['form-control','custom-form-control','custom-input']"
+                >
+            </div>
+            <div class="col-1 padd0 txt-left">
+                <button (click)="hideConfirmPassword = !hideConfirmPassword" class="buttonHide">
+                    <fa-icon *ngIf="hideConfirmPassword" [icon]="eyeIcon"></fa-icon>
+                    <fa-icon *ngIf="!hideConfirmPassword" [icon]="eyeSlashIcon"></fa-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div  class="col form-group">
+                <label class="custom-label"  for="capchaCode">Nhập mã xác nhận</label>
+                <input 
+                    type="text"
+                    placeholder="Placeholder"
+                    formControlName="capchaCode"
+                    id="capchaCode"
+                    [ngClass]="['form-control','custom-form-control','custom-input']"
+                >
+            </div>
+            <div class="col"></div>
+        </div>
+        
+        <div class="form-group txt-right">
+            <button type="submit" (click)="onSubmit()" class="btn btn-success">Đăng ký</button>
+        </div>
+    </form>
+</div>

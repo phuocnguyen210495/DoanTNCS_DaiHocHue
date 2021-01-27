@@ -1,0 +1,56 @@
+<!-- Modal remove member -->
+<div class="modal fade" id="removeBranch" tabindex="-1" role="dialog" aria-labelledby="removeBranchModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa chi đoàn</h5>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="removeBranch">
+                    <div class="form-group">
+                        <label for="rmName" class="custom-label">Tên chi đoàn</label>
+                        <input
+                            type="text"
+                            id="rmName"
+                            formControlName="rmName"
+                            [ngClass]="['form-control','custom-form-control','custom-input','locked']"
+                            readonly
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="rmLeader" class="custom-label">Chi đoàn trưởng</label>
+                        <input
+                            type="text"
+                            id="rmLeader"
+                            formControlName="rmLeader"
+                            [ngClass]="['form-control','custom-form-control','custom-input','locked']"
+                            readonly
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="rmReason" class="custom-label">Lý do xóa chi đoàn</label>
+                        <select
+                            id="rmReason"
+                            formControlName="rmReason"
+                            [ngClass]="['form-control','custom-form-control','custom-select']"
+                        >
+                            <option 
+                                *ngFor="let reason of reasons"
+                                value="{{ reason}}"
+                            >
+                                {{ reason }}
+                            </option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#removeBranchSuccess" data-dismiss="modal">Xóa chi đoàn</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modal -->
+
+<app-branch-delete-success></app-branch-delete-success>

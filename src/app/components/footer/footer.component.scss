@@ -1,0 +1,120 @@
+$main-color : #04468B;
+footer{
+    padding-top: 28px;
+    padding-bottom: 14px;
+    background: $main-color;
+    color: #fff;
+    .logo{
+        display: inline-block;
+        width: 10%;
+    }
+    .texts{
+        display: inline-block;
+        width: 80%;
+        text-align: center;
+        h1{
+            font-size: 22px;
+            margin-bottom: 0px;
+            text-transform: uppercase;
+        }
+        ul{
+            li{
+                font-size: 14px;
+                margin: 5px 0px 0px 0px;
+            }
+        }
+    }
+    ul{
+        margin-top: 14px;
+        li{
+            .icon{
+                width: 45px;
+                height: 41px;
+                float: right
+            }
+            
+            .faicon{
+                font-size: 40px;
+                margin-left: 3px;
+                float: right;
+                color: #fff
+            }
+            p{
+                height: 40px;
+                padding-top: 14px;
+                margin-right: 10px;
+            }
+        }
+    }
+}
+// Extra large
+// Large
+@media (max-width: 1199.98px){
+    footer{
+        .texts{
+            h1{
+                font-size: 18px;
+            }
+            ul{
+                li{
+                    font-size: 12px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+        ul{
+            li{
+                .icon{
+                    width: 40px;
+                    height: 36px;
+                }
+                .faicon{
+                    font-size: 36px;
+                }
+            }
+        }
+    }
+}
+// Medium
+// Small
+@media (max-width: 767.98px){
+    footer{
+        text-align: center;
+        .texts{
+            h1{
+                font-size: 12px
+            }
+        }
+    }
+}
+// Extra small
+@media (max-width: 575.98px){
+    footer{
+        .texts{
+            ul{
+                li{
+                    line-height: 20px;
+                }
+            }
+        }
+        ul{
+        
+            li{
+                .icon{
+                   
+                    float: right
+                }
+                
+                .faicon{
+                    
+                    float: right;
+                    
+                }
+                p{
+                    padding-top: 10px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

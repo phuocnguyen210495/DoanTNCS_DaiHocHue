@@ -1,0 +1,44 @@
+<div class="blck w100 page manager-branchs">
+    <h1 class="page_title">Quản lý chi đoàn và liên chi đoàn</h1>
+    <section>
+        <p class="title">Chi Đoàn</p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let branch of branchs">
+                    <a href="#" class="group branch">
+                        <p class="name">{{ branch['name'] }}</p>
+                        <p>{{ branch['members'] }} đoàn viên</p>
+                        <p>Trưởng chi đoàn</p>
+                        <p  class="strong">{{ branch['leader'] }}</p>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 txt-center">
+                    <a [routerLink]="['/branchs']" class="btn">Xem tất cả chi đoàn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <p class="title">Liên chi đoàn</p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let inter of inters">
+                    <a href="#" class="group inter">
+                        <p class="name">{{ inter['name'] }}</p>
+                        <p>{{ inter['branchs'] }} chi đoàn</p>
+                        <p>{{ inter['members'] }} đoàn viên</p>
+                        <p>Trưởng liên chi đoàn</p>
+                        <p  class="strong">{{ inter['leader'] }}</p>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 txt-center">
+                    <a [routerLink]="['/inters']" class="btn">Xem tất cả liên chi đoàn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

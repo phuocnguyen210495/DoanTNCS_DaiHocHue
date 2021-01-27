@@ -1,0 +1,38 @@
+<div class="container-fluid manager-members-menu">
+    <form [formGroup]="studentForm">
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 form-group">
+                <input 
+                    type="text"
+                    formControlName="idNumber"
+                    id="idNumber"
+                    [ngClass]="['form-control']"
+                    placeholder="Số CMND"
+                >
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 form-group">
+                <input 
+                    type="text"
+                    formControlName="studentCode"
+                    id="studentCode"
+                    required
+                    [ngClass]="['form-control']"
+                    required
+                    placeholder="Mã số sinh viên"
+                >
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-12 form-group">
+                <button class="btn btn-light form-control">
+                    <fa-icon [icon]="searchIcon"></fa-icon>
+                    <span class="elg"> Tìm</span>
+                </button>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-12 form-group">
+                <a class="btn btn-light form-control" href="manager-members/new">
+                    <fa-icon [icon]="plusIcon"></fa-icon>
+                    <span class="elg"> Thêm</span>
+                </a>
+            </div>
+        </div><!-- row -->
+    </form>
+</div>

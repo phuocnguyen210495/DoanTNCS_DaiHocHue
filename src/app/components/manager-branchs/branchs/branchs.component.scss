@@ -1,0 +1,74 @@
+$td-border: 1px solid #D7D7D7;
+$second-color : #A00000;
+
+.branchs{
+    .page_content{
+        padding: 0px 28px 14px 28px;
+        .btn-light{ border: $td-border }
+        .menu{
+            margin-bottom: 14px;
+            .btn{ width: 100% }
+            .searchInput{ border-radius: 3px 0px 0px 3px }
+            .searchButton{ border-radius: 0px 3px 3px 0px }
+            .button-wrapper{
+                @media (min-width: 768px){ padding-right: 0px }
+                @media (max-width: 767.98px){ padding: 0px }
+            }
+        }
+        .faketable{
+            .td{
+                padding-top: 10px;
+                padding-bottom: 10px;
+                display: flex; 
+                justify-content: center;
+                p{
+                    align-self: center;
+                    margin: 0px;
+                    strong{ font-weight: 600 }
+                }
+                .btn{ width: 100% }
+                @media (max-width: 767.98px) and (min-width: 576px){
+                    display: block;
+                    padding-bottom: 0px;
+                    text-align: center;
+                    p{
+                        strong{ display: block }
+                    }
+                }
+                @media (max-width: 575.95px){
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    text-align: left;
+                }
+            }
+            .thead{
+                padding-top: 7px;
+                padding-bottom: 7px;
+                background: #ececec;
+                border-radius: 3px;
+                color: #000;
+                font-weight: 600;
+            }
+            .tbody{
+                .tr{
+                    border-top: $td-border;
+                    @media (max-width: 767.98px){
+                        margin-bottom: 7px;
+                        padding-top: 7px;
+                    }
+                    &:first-child{ border-top : 0px solid #fff }
+                    .td{
+                        &:last-child{ display: block }
+                    }
+                }
+                .btn{
+                    margin: 0px 0px 7px 0px;
+                    @media (max-width: 991.98px) and (min-width: 768px){                   
+                        float: right;
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

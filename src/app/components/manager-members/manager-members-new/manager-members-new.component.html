@@ -1,0 +1,290 @@
+<div class="blck w100 page manager-members-new">
+    <h1 class="page_title">Thêm Đoàn viên mới</h1>
+    <section class="container-fluid">
+        <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Thông tin Sinh viên</h2>
+                </div>
+            </div><!-- row -->
+
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <img src="https://cdn1.vectorstock.com/i/thumb-large/16/05/male-avatar-profile-picture-silhouette-light-vector-5351605.jpg" class="avatar">
+                    <div class="custom-file">
+                        <input type="file" id="customFile" class="custom-file-input">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 form-group">
+                            <label for="studentCode">Mã số sinh viên</label>
+                            <input 
+                                type="text"
+                                id="studentCode"
+                                formControlName="studentCode"
+                                class="form-control"
+                            >
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 form-group">
+                            <label for="lastName">Họ</label>
+                            <input 
+                                type="text"
+                                id="lastName"
+                                formControlName="lastName"
+                                class="form-control"
+                            >
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 form-group">
+                            <label for="middleName">Tên đệm</label>
+                            <input 
+                                type="text"
+                                id="middleName"
+                                formControlName="middleName"
+                                class="form-control"
+                            >
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 form-group">
+                            <label for="firstName">Tên</label>
+                            <input 
+                                type="text"
+                                id="firstName"
+                                formControlName="firstName"
+                                class="form-control"
+                            >
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 form-group">
+                            <label for="phoneNumber">Số điện thoại</label>
+                            <input 
+                                type="text"
+                                id="phoneNumber"
+                                formControlName="phoneNumber"
+                                class="form-control"
+                            >
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 form-group">
+                            <label for="idNumber">Số CMND</label>
+                            <input 
+                                type="text"
+                                id="idNumber"
+                                formControlName="idNumber"
+                                class="form-control"
+                            >
+                        </div>
+                        <div class="col-12 form-group">
+                            <label for="email">Email</label>
+                            <input 
+                                type="text"
+                                id="emali"
+                                formControlName="email"
+                                class="form-control"
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div><!-- row -->
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="gender">Giới tính</label>
+                        <select 
+                            formControlName="gender" 
+                            id="gender"
+                            class="form-control"
+                        >
+                            <option *ngFor="let gender of studentGenders" value="{{ gender }}">{{ gender }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthDate">Ngày sinh</label>
+                        <input 
+                            type="date"
+                            id="birthDate"
+                            formControlName="birthDate"
+                            class="form-control"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Địa chỉ liên hệ</label>
+                        <textarea
+                            id="address"
+                            formControlName="address"
+                            class="form-control"
+                            rows="3"
+                        >
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="nation">Dân tộc</label>
+                        <select 
+                            formControlName="nation" 
+                            id="nation"
+                            class="form-control"
+                        >
+                            <option *ngFor="let nation of studentNations" value="{{ nation }}">{{ nation }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="religion">Tôn giáo</label>
+                        <select 
+                            formControlName="religion"
+                            id="religion"
+                            class="form-control"
+                        >
+                            <option *ngFor="let religion of studentReligions" value="{{ religion }}">{{ religion }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="policyCategory">Diện chính sách</label>
+                        <select 
+                            formControlName="policyCategory"
+                            id="policyCategory"
+                            class="form-control"
+                        >
+                            <option *ngFor="let category of studentPolicyCategories" value="{{ category }}">{{ category }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="studyStatus">Trạng thái học tập</label>
+                        <select 
+                            formControlName="studyStatus"
+                            id="studyStatus"
+                            class="form-control"
+                        >
+                            <option *ngFor="let status of studentStudyStatuses" value="{{ status }}">{{ status }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="studyDate">Ngày vào trường</label>
+                        <input 
+                            type="date"
+                            id="studyDate"
+                            formControlName="studyDate"
+                            class="form-control"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="studyKind">Bậc đào tạo Đại học</label>
+                        <select 
+                            formControlName="studyKind"
+                            id="studyKind"
+                            class="form-control"
+                        >
+                            <option *ngFor="let kind of studentStudyKinds" value="{{ kind }}">{{ kind }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="major">Ngành</label>
+                        <select 
+                            formControlName="major"
+                            id="major"
+                            class="form-control"
+                        >
+                            <option *ngFor="let major of studentMajors" value="{{ major }}">{{ major }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="faculty">Khoa</label>
+                        <select 
+                            formControlName="faculty"
+                            id="faculty"
+                            class="form-control"
+                        >
+                            <option *ngFor="let faculty of studentFaculties" value="{{ faculty }}">{{ faculty }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="class">Lớp</label>
+                        <select 
+                            formControlName="class"
+                            id="class"
+                            class="form-control"
+                        >
+                            <option *ngFor="let class of studentClasses" value="{{ class }}">{{ class }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="userType">Loại người dùng</label>
+                        <select 
+                            formControlName="userType"
+                            id="userType"
+                            class="form-control"
+                        >
+                            <option *ngFor="let type of studentUserTypes" value="{{ type }}">{{ type }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div><!-- row -->
+            <div class="row">
+                <div class="col-12">
+                    <h2>Thông tin Đoàn viên</h2>
+                </div>
+            </div><!-- row -->
+
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="unionMission">Công tác Đoàn</label>
+                        <input 
+                            type="text"
+                            id="unionMission"
+                            formControlName="unionMission"
+                            class="form-control"
+                        >
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="area">Khu vực</label>
+                        <input 
+                            type="text"
+                            id="area"
+                            formControlName="area"
+                            class="form-control"
+                        >
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="position">Chức vụ</label>
+                        <select 
+                            id="position"
+                            formControlName="position"
+                            class="form-control"
+                        >
+                            <option *ngFor="let position of memberPositions" value="{{ position }}">{{ position }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="partyJoinDate">Ngày vào Đảng</label>
+                        <input 
+                            type="date"
+                            formControlName="partyJoinDate"
+                            class="form-control"
+                        >
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="unionJoinDate">Ngày vào Đoàn</label>
+                        <input 
+                            type="date"
+                            formControlName="unionJoinDate"
+                            class="form-control"
+                        >
+                    </div>
+                </div>
+            </div><!-- row -->
+            <div class="row">
+                <div class="col-12 txt-center">
+                    <button type="submit" class="btn btn-success">Hoàn tất</button>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>

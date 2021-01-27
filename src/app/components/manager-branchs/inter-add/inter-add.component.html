@@ -1,0 +1,186 @@
+<div class="blck w80 page--manager inter-add">
+    <h1 class="page_title">Tạo liên chi đoàn mới</h1>
+    <div class="chs--shadow page_content">
+        <div class="row">
+            <!-- Select group -->
+            <div class="col-xl-4 col-lg-5 col-md-12 col-sm-12 col-12 ">
+                <form [formGroup]="fg_select">
+                    <div class="form-group emd esm exs">
+                        <img [src]="display_picture">
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label" for="fc_branch">Chi đoàn</label>
+                        <select
+                            id="fc_branch"
+                            class="form-control custom-form-control custom-select"
+                            formControlName="fc_branch"
+                        >
+                            <option 
+                                *ngFor="let b of data_branchs" 
+                                value="{{ b.b_id }}"
+                            >
+                                {{ b.b_name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group txt-right">
+                        <button 
+                            class="btn btn-add"
+                            (click)="addBranch(); showNewInterData()"
+                        >
+                            Thêm chi đoàn
+                            <fa-icon [icon]="icon_arrow_right" class="esm exs emd"></fa-icon>
+                            <fa-icon [icon]="icon_arrow_down" class="exl elg "></fa-icon>
+                        </button>
+                    </div>
+                </form>
+            </div><!-- end of select group -->
+
+            <!-- New branch -->
+            <div class="col-xl-8 col-lg-7 col-md-12 col-sm-12 col-12">
+                <form [formGroup]="fg_newinter">
+                    <!-- Branchs list -->
+                    <div class="form-group">
+                        <div class="faketable">
+                            <div class="esm exs thead">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-4 th">Tên chi đoàn</div>
+                                    <div class="col-xl-2 col-lg-3 col-md-3 th">Chi đoàn trưởng</div>
+                                    <div class="col-xl-2 col-lg-2 col-md-2 th">Đoàn viên</div>
+                                    <div class="col-xl-2 elg emd th">Ngày thành lập</div>
+                                    <div class="col-xl-2 col-lg-3 col-md-3 th"></div>
+                                </div>
+                            </div>
+                            <div class="exl elg emd thead">
+                                <div class="row">
+                                    <div class="col-12 th">Danh sách chi đoàn </div>
+                                </div>
+                            </div>
+                            <div class="tbody" *ngIf="isNotNull(listBranchs.controls) === true; else no_branch_block">
+                                <div class="row marg0 tr" *ngFor="let b of display_branchs.controls; let i = index" (mouseover)="loadPicture(b.get('b_leader_avatar').value)">
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 td">
+                                        <a href="#" data-toggle="modal" data-target="#detail_branch"><strong class="exl elg emd">Tên chi đoàn : </strong>{{ b.get('b_name').value }}</a>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12 td">
+                                        <p><strong class="exl elg emd">Chi đoàn trưởng : </strong>{{ b.get('b_leader_name').value }}</p>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 td">
+                                        <p><strong class="exl elg emd">Đoàn viên : </strong>{{ b.get('b_member_quantity').value }}</p></div>
+                                    <div class="col-xl-2 elg emd col-sm-12 col-12 td">
+                                        <p><strong class="exl elg emd">Ngày thành lập : </strong>{{ b.get('b_createdate').value }}</p>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12 td">
+                                        <button class="btn btn-danger" (click)="removeBranch(i)">Xóa</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #no_branch_block>
+                                <div class="tbody">
+                                    <div class="row marg0 tr nohover">
+                                        <div class="col-12 td">
+                                            <p>Hiện chưa có chi đoàn nào trong danh sách này.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <!-- end of branchs list -->
+
+                    <!-- Branch's leader -->
+                    <div class="form-group">
+                        <label class="custom-label" for="fc_leader">Liên chi đoàn trưởng</label>
+                        <select
+                            *ngIf="isNotNull(listBranchs.controls) === true ; else elseSelectBlock"
+                            id="fc_leader"
+                            formControlName="fc_leader"
+                            class="form-control custom-form-control custom-select"
+                        >
+                            <option *ngFor="let b of display_branchs.controls" value="{{ b.get('b_leader_id').value }}">
+                                {{ b.get('b_leader_name').value }}
+                            </option>
+                        </select>
+                        <ng-template #elseSelectBlock>
+                            <input
+                                type="text"
+                                id="fc_leader"
+                                formControlName="fc_leader"
+                                class="form-control custom-form-control custom-input locked"
+                                readonly
+                            >
+                        </ng-template>
+                    </div>
+                    <!-- end of branch's leader -->
+
+                    <!-- Inter name -->
+                    <div class="form-group">
+                        <label class="custom-label" for="fc_name">Tên liên chi đoàn</label>
+                        <input 
+                            id="fc_name"
+                            formControlName="fc_name"
+                            class="form-control custom-form-control custom-input"
+                        >
+                    </div>
+                    <!-- end of inter name -->
+                </form>
+            </div>
+            <!-- end of new branch -->
+
+            <div class="col-12 txt-center btn-footer">
+                <a class="btn btn-secondary" [routerLink]="['/inters']">Hủy</a>
+                <button 
+                    class="btn btn-success"
+                    (click)="showNewInterData()"
+                >
+                    Xác nhận
+                </button>
+            </div>
+            <app-branch-add-success></app-branch-add-success>
+        </div><!-- end of row -->
+    </div>
+
+    <!-- Modal branch detail -->
+    <div id="detail_branch" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ data_example_branch.b_name }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="blck w100">
+                        <ul>
+                            <li><strong>Trưởng chi đoàn : </strong>{{ data_example_branch.b_leader_name }}</li>
+                            <li><strong>Số đoàn viên : </strong>{{ data_example_branch.b_member_quantity }}</li>
+                            <li><strong>Ngày thành lập : </strong>{{ data_example_branch.b_createdate }}</li>
+                        </ul>
+                    </div>
+                    <div class="container-fluid faketable">
+                        <div class="esm exs thead">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 th">MSSV</div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 th">Họ và tên</div>
+                            </div>
+                        </div>
+                        <div class="tbody" *ngIf="isNotNull(listBranchs.controls) === true">
+                            <div class="row tr" *ngFor="let m of data_example_branch.b_members_list; let i = index">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 td">
+                                    <p><span class="exl elg emd">Mã số sinh viên : </span>{{ m.m_studentcode }}</p>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 td">
+                                    <p><span class="exl elg emd">Họ và tên : </span>{{ m.m_lastname + ' ' + m.m_middlename + ' ' + m.m_firstname }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+      </div>
+    <!-- end modal branch detail -->
+</div>

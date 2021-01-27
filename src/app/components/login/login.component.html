@@ -1,0 +1,32 @@
+<div class="widget login">
+    <p class="title">Đăng nhập</p>
+    <div *ngIf="checkLoginInfo() === false; else elseBlock" class="content">
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label>Mã số sinh viên</label>
+                <input type="text" class="form-control" [(ngModel)]="login_info.studentCode" name="studentCode" />
+            </div>
+        
+            <div class="form-group">
+                <label>Mật khẩu đăng nhập</label>
+                <input type="password" class="form-control" [(ngModel)]="login_info.studentPassword" name="studentPassword" />
+            </div>
+
+          
+            <div class="row">
+                <div class="col txt-left">
+                    <a [routerLink]="['/register']" class="blck">Đăng ký</a>
+                    <a [routerLink]="['/forgot-password']">Quên mật khẩu?</a>
+                </div>
+                <div class="col txt-right">
+                    <button type="submit" class="btn btn-login chs--shadow chs--radius">Đăng nhập</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <ng-template #elseBlock>
+        <div class="content">
+            <p>Login success !</p>
+        </div>
+    </ng-template>
+</div>

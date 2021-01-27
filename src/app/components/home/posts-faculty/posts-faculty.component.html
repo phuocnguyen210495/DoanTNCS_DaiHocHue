@@ -1,0 +1,20 @@
+<section class="chs--shadow chs--radius">
+    <h3 class="title">Đoàn khoa Du lịch</h3>
+    <div class="content">
+        <div *ngIf="posts.length > 0; else elseBlock">
+            <ul>
+                <li *ngFor="let post of posts; let i = index">
+                    <div class="d-flex">
+                        <a href="#">{{ post.title }}</a>
+                        <p *ngIf="i<3" class="deco"></p>
+                    </div>
+                    <span class="publishdate">Ngày đăng {{ post.publishdate }}</span>
+                </li>
+            </ul>
+            <a href="#" class="blck txt-right readmore">Xem thêm...</a>
+        </div>
+        <ng-template #elseBlock>
+            <p style="margin-top: 14px; font-weight: 600">Hiện chưa có bài viết nào thuộc chủ đề này.</p>
+        </ng-template>
+    </div>
+</section>

@@ -1,0 +1,32 @@
+<div class="blck w100 sticky-top top-menu">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xl-12 offset-xl-0 col-lg-12 offset-lg-0 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-12 offset-0">
+          <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTop">
+
+                <ul class="navbar-nav">
+                  <li *ngFor="let item of menu_items" class="nav-item">
+                    <a 
+                      class="nav-link" 
+                      [routerLink]="[item.link]" 
+                      routerLinkActive="active" 
+                      [attr.aria-valuenow]="item.aria_label"
+                    >
+                      {{ item.display }}
+                    </a>
+                  </li>
+                </ul>
+                <form class="form-inline">
+                    <input class="form-control" type="search" placeholder="Nhập từ khóa...">
+                    <button class="btn" type="submit"><fa-icon [icon]="searchIcon" class="faicon"></fa-icon></button>
+                </form>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+</div>

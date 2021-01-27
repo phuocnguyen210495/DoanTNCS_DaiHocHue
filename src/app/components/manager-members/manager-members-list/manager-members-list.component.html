@@ -1,0 +1,108 @@
+<div class="container-fluid manager-members-list">
+    <div class="blck w100 faketable">
+        <div class="row esm exs thead">
+            <div class="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-12 txt-center td">MSSV</div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-12 txt-center td">CMND</div>
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-12 txt-center td">Họ</div>
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-12 txt-center td">Tên</div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 txt-center elg emd td">Ngày sinh</div>
+            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-1 col-12 txt-center emd td"></div>
+        </div>
+        <div class="tbody">
+            <div class="row tr" *ngFor="let student of students">
+                <div class="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-12 align-middle td">
+                    <p><strong class="exl elg emd">MSSV : </strong>{{ student['studentCode'] }}</p>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-12 align-middle td">
+                    <p><strong class="exl elg emd">CMND : </strong>{{ student['idNumber'] }}</p>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-12 align-middle td">
+                    <p><strong class="exl elg emd">Họ : </strong>{{ student['lastName'] }}</p>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-12 align-middle td">
+                    <p><strong class="exl elg emd">Tên : </strong>{{ student['firstName'] }}</p>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 elg emd align-middle td">
+                    <p><strong class="exl elg emd">Ngày sinh : </strong>{{ student['dateBirth'] }}</p>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-6 col-12 padd0 td">
+                    <a href="account" class="btn btn-light">Sửa</a>
+                    <button 
+                        type="button" 
+                        [ngClass]="['btn','btn-danger']"
+                        data-toggle="modal" 
+                        data-target="#removeMember"
+                        (click)="removeMember(student['studentCode'])"
+                    >
+                        Xóa
+                    </button> 
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <app-pagination></app-pagination>
+        <!-- end pagination -->
+
+        <!-- Modal remove member -->
+        <div class="modal fade" id="removeMember" tabindex="-1" role="dialog" aria-labelledby="removeMemberModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Xóa Đoàn viên</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="memberToRemove">
+                            <div class="form-group">
+                                <label for="removeStudentCode">Mã số sinh viên</label>
+                                <input 
+                                    type="text"
+                                    id="removeStudentCode"
+                                    formControlName="removeStudentCode"
+                                    class="form-control"
+                                    readonly
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="removeReason">Lý do xóa</label>
+                                <select 
+                                    id="removeReason"
+                                    formContrlName="removeReason"
+                                    class="form-control"
+                                >
+                                    <option *ngFor="let reason of removeReasons">
+                                        {{ reason }}
+                                    </option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                       <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#removeMemberSuccess" data-dismiss="modal">Xóa Đoàn viên</button>
+                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end modal -->
+
+        <!-- Modal remove success -->
+        <div class="modal fade" tabindex="-1" id="removeMemberSuccess" role="dialog" aria-labelledby="removeMemberSuccessModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title modal-title-success">Xóa thành công</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Đoàn viên đã được xóa thành công khỏi dữ liệu quản lý.</p>
+                    </div>
+                    <div class="modal-footer">
+                    <a [routerLink]="['/dashboard']" data-dismiss="modal" class="btn btn-primary">Về trang chủ</a>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end modal -->
+    </div><!-- end faketable -->
+</div>

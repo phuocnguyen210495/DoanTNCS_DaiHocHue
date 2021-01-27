@@ -1,0 +1,13 @@
+<div class="widget">
+    <p class="title">{{ widget_title }}</p>
+    <div class="content">
+        <ul *ngIf="posts.length > 0; else elseBlock">
+            <li *ngFor="let post of posts; let i = index">
+                <a href="{{ post.link }}">{{ post.title }}</a>
+            </li>
+        </ul>
+        <ng-template #elseBlock>
+            <p>Hiện chưa có bài viết nào thuộc chủ đề này.</p>
+        </ng-template>
+    </div>
+</div>

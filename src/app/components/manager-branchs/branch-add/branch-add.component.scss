@@ -1,0 +1,112 @@
+$td-border: 1px solid #D7D7D7;
+$main-color : #04468B;
+$second-color: #A00000;
+.branch-add{
+    margin-top: 28px;
+    margin-bottom: 42px;
+    .page_title{
+        display: inline-block;
+        background: $main-color;
+        color: #fff;
+        margin-bottom: 0px;
+        padding: 10px 28px;
+        border-radius: 10px 10px 0px 0px;
+    }
+    .page_content{
+        padding: 28px;
+        border-radius: 0px 10px 10px 10px;
+        border: 4px solid $main-color
+    }
+    .btn-add{
+        background: $main-color;
+        color: #fff;
+        @media (max-width: 575.98px){
+            width: 100%
+        }
+    }
+    img{
+        display: block;
+        width: 200px;
+        height: 250px;
+        margin: auto auto;
+    }
+    .faketable{
+        padding: 0px ;
+        .thead{
+            padding-top: 7px;
+            padding-bottom: 7px;
+            background:#FF6B00;
+            color: #fff;
+            border-radius: 3px 3px 0px 0px;    
+            font-weight: 500;
+            .th{ text-align: center }
+        }
+        .tbody{
+            max-height: 400px;
+            overflow-x: hidden;
+            -webkit-overflow-x: hidden;
+            -moz-overflow-x: hidden;
+            @media (max-width: 991.98px){
+                max-height: 100%;
+            }
+            .tr{
+                border-top: $td-border;
+                border-style: dotted;
+                @media (max-width: 767.98px){
+                    margin-bottom: 7px;
+                    padding-top: 7px;
+                }
+                &:first-child{
+                    border-top : 0px solid #fff;
+                }
+                &:hover{
+                    background: #ededed;
+                }
+                .td{
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    display: flex; 
+                    justify-content: center;
+                    text-align: center;
+                    p{
+                        align-self: center;
+                        margin: 0px;
+                        strong{
+                            font-weight: 600
+                        }
+                    }
+                    @media (max-width: 1199.98px){
+                        font-size: 13px;
+                    }
+                    @media (max-width: 767.98px){
+                        padding-bottom: 0px;
+                    }
+                    .btn{ 
+                        width: 100% ;
+                        @media (max-width: 767.98px){
+                            margin-bottom: 14px;
+                        }
+                        @media (max-width: 767.98px) and (min-width: 576px){
+                            width: 50%;
+                            float: right;
+                        }
+                    }
+                }
+            }
+            .nohover{
+                &:hover{ background: inherit }
+            }
+        }
+    }
+    // Blackberry to iPhone5, iPhone6
+    @media (max-width: 360px){
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .btn-footer{
+        .btn{
+            min-width: 100px;
+            margin-right: 7px
+        }
+    }
+}

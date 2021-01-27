@@ -1,0 +1,482 @@
+<div class="blck w100 page account">
+    <h1 class="page_title">Thông tin tài khoản</h1>
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-8"><h2>Thông tin Sinh viên</h2></div>
+            <div class="col-4 txt-right">
+                <button 
+                    (click)="isEditStudent = !isEditStudent" 
+                    [disabled]="isEditStudent === true" 
+                    [ngClass]="['btn','btn-info']"
+                >
+                    <fa-icon [icon]="editIcon"></fa-icon>
+                </button>
+            </div>
+        </div><!-- row -->
+
+        <form [formGroup]="formGroupStudent" (submit)="isEditStudent = !isEditStudent">
+            <div class="row">   
+                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <img [src]="studentPicture" class="avatar">
+                    <button 
+                        *ngIf="isEditAvatar === false; else inputAvatarBlock"
+                        [ngClass]="['form-control','btn','btn-info','editAvatar']"
+                        (click)="isEditAvatar = true"
+                    >
+                        <fa-icon [icon]="uploadIcon"></fa-icon>
+                        <span> Đổi ảnh</span>
+                    </button>
+                    <ng-template #inputAvatarBlock>
+                        <div class="custom-file">
+                            <input type="file" id="customFile" class="custom-file-input">
+                            <label class="custom-label"  class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                        <button [ngClass]="['form-control','btn','btn-success','saveAvatar']"     (click)="isEditAvatar = false">Lưu</button>
+                        <button [ngClass]="['form-control','btn','btn-secondary','cancelAvatar']" (click)="isEditAvatar = false">Hủy</button>
+                    </ng-template>
+                </div>
+                <div class="col-xl-8 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="custom-label"  for="studentCode">Mã số sinh viên</label>
+                                <input 
+                                    type="text" 
+                                    formControlName="studentCode" 
+                                    id="studentCode" 
+                                    [ngClass]="['form-control', 'custom-form-control', 'custom-input', isEditStudent === true ? '' : 'locked']" 
+                                    [readonly]="!isEditStudent"
+                                >
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="custom-label"  for="lastName">Họ</label>
+                                <input 
+                                    type="text" 
+                                    formControlName="lastName" 
+                                    id="lastName" 
+                                    [ngClass]="['form-control','custom-form-control','custom-input',isEditStudent === true ? '' : 'locked']" 
+                                    [readonly]="!isEditStudent"
+                                >
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="custom-label"  for="middleName">Tên đệm</label>
+                                <input 
+                                    type="text" 
+                                    formControlName="middleName" 
+                                    id="middleName" 
+                                    [ngClass]="['form-control','custom-form-control','custom-input',isEditStudent === true ? '' : 'locked']" 
+                                    [readonly]="!isEditStudent"
+                                >
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="custom-label"  for="firstName">Tên</label>
+                                <input 
+                                    type="text" 
+                                    formControlName="firstName" 
+                                    id="firstName" 
+                                    [ngClass]="['form-control','custom-form-control','custom-input',isEditStudent === true ? '' : 'locked']" 
+                                    [readonly]="!isEditStudent"
+                                >
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="custom-label"  for="phoneNumber">Số điện thoại</label>
+                                <input 
+                                    type="text" 
+                                    formControlName="phoneNumber" 
+                                    id="phoneNumber" 
+                                    [ngClass]="['form-control','custom-form-control','custom-input',isEditStudent === true ? '' : 'locked']" 
+                                    [readonly]="!isEditStudent"
+                                >
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="custom-label"  for="idNumber">Số CMND</label>
+                                <input 
+                                    type="text" 
+                                    formControlName="idNumber" 
+                                    id="idNumber" 
+                                    [ngClass]="['form-control','custom-form-control','custom-input',isEditStudent === true ? '' : 'locked']" 
+                                    [readonly]="!isEditStudent"
+                                >
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="custom-label"  for="email">Email</label>
+                                <input 
+                                    type="email" 
+                                    formControlName="email" 
+                                    id="email" 
+                                    [ngClass]="['form-control','custom-form-control','custom-input',isEditStudent === true ? '' : 'locked']" 
+                                    [readonly]="!isEditStudent"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- row -->
+            
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label class="custom-label"  for="gender">Giới tính</label>
+                        <input 
+                            *ngIf="isEditStudent === false; else selectGenderBlock"
+                            type="text"
+                            formControlName="gender"
+                            [ngClass]="['form-control','custom-form-control','custom-input','locked']"
+                            [readonly]="true"
+                            id="gender"
+                        >
+                        <ng-template #selectGenderBlock>
+                            <select 
+                                formControlName="gender" 
+                                [ngClass]="['form-control','custom-form-control','custom-select']" 
+                                id="gender"
+                            >
+                                <option *ngFor="let gender of studentGenders" value="{{ gender }}">{{ gender }}</option>
+                            </select>
+                        </ng-template>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label"  for="birthDate">Ngày sinh</label>
+                        <input 
+                            type="date" 
+                            formControlName="birthDate" 
+                            id="birthDate" 
+                            [ngClass]="['form-control','custom-form-control','custom-input',isEditStudent === true ? '' : 'locked']"
+                            [readonly]="!isEditStudent" 
+                            min="1900-01-01" 
+                            max="2021-01-01" 
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label"  for="address">Địa chỉ liên hệ</label>
+                        <textarea 
+                            type="text" 
+                            formControlName="address" 
+                            id="address" 
+                            [ngClass]="['form-control','custom-form-control','custom-textarea',isEditStudent === true ? '' : 'locked']"
+                            [readonly]="!isEditStudent"
+                            rows="3"
+                        >
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label"  for="nation">Dân tộc</label>
+                        <input 
+                            *ngIf="isEditStudent === false; else selectNationBlock"
+                            type="text"
+                            formControlName = "nation"
+                            [ngClass]="['form-control','custom-form-control','custom-input','locked']"
+                            [readonly]="true"
+                            id="nation"
+                        >
+                        <ng-template #selectNationBlock>
+                            <select 
+                                formControlName="nation"
+                                id="nation" 
+                                [ngClass]="['form-control','custom-form-control','custom-select']"
+                            >
+                                <option *ngFor="let nation of studentNations" value="{{ nation }}">{{ nation }}</option>
+                            </select>
+                        </ng-template>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label"  for="religion">Tôn giáo</label>
+                        <input 
+                            *ngIf="isEditStudent === false; else selectReligionBlock"
+                            type="text"
+                            formControlName = "religion"
+                            [ngClass]="['form-control','custom-form-control','custom-input','locked']"
+                            [readonly]="true"
+                            id="religion"
+                        >
+                        <ng-template #selectReligionBlock>
+                            <select 
+                                formControlName="religion"
+                                id="religion"
+                                [ngClass]="['form-control','custom-form-control','custom-select']"
+                            >
+                                <option *ngFor="let religion of studentReligions" value="{{ religion }}">{{ religion }}</option>
+                            </select>
+                        </ng-template>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label"  for="policyCategory">Diện chính sách</label>
+                        <input 
+                            *ngIf="isEditStudent === false; else selectPolicyCategoryBlock"
+                            type="text"
+                            formControlName = "policyCategory"
+                            [ngClass]="['form-control','custom-form-control','custom-input','locked']"
+                            [readonly]="true"
+                            id="policyCategory"
+                        >
+                        <ng-template #selectPolicyCategoryBlock>
+                            <select 
+                                formControlName="policyCategory" 
+                                id="policyCategory" 
+                                [ngClass]="['form-control','custom-form-control','custom-select']"
+                            >
+                                <option *ngFor="let category of studentPolicyCategories" value="{{ category }}">{{ category }}</option>
+                            </select>
+                        </ng-template>
+                    </div>
+                </div><!-- col -->
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label class="custom-label"  for="studyStatus">Trạng thái học tập</label>
+                        <input 
+                            *ngIf="isEditStudent === false; else selectStudyStatusBlock"
+                            type="text"
+                            formControlName = "studyStatus"
+                            [ngClass]="['form-control','custom-form-control','custom-input','locked']"
+                            [readonly]="true"
+                            id="studyStatus"
+                        >
+                        <ng-template #selectStudyStatusBlock>
+                            <select 
+                                formControlName="studyStatus" 
+                                id="studyStatus" 
+                                [ngClass]="['form-control','custom-form-control','custom-select']"
+                            >
+                                <option *ngFor="let status of studentStudyStatuses" value="{{ status }}">{{ status }}</option>
+                            </select>
+                        </ng-template>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label"  for="studyDate">Ngày vào trường</label>
+                        <input 
+                            type="date" 
+                            formControlName="studyDate" 
+                            id="studyDate" 
+                            [ngClass]="['form-control','custom-form-control','custom-input',isEditStudent === true ? '' : 'locked']"
+                            [readonly]="!isEditStudent" 
+                            min="1900-01-01" 
+                            max="2021-01-01" 
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label"  for="studyKind">Bậc đào tạo Đại học</label>
+                        <input 
+                            *ngIf="isEditStudent === false; else selectStudyKindBlock"
+                            type="text"
+                            formControlName = "studyKind"
+                            [ngClass]="['form-control','custom-form-control','custom-input','locked']"
+                            [readonly]="true"
+                            id="studyKind"
+                        >
+                        <ng-template #selectStudyKindBlock>
+                            <select 
+                                formControlName="studyKind"
+                                id="studyKind"
+                                [ngClass]="['form-control','custom-form-control','custom-select']"
+                            >
+                                <option *ngFor="let kind of studentStudyKinds" value="{{ kind }}">{{ kind }}</option>
+                            </select>
+                        </ng-template>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label"  for="major">Ngành</label>
+                        <input 
+                            *ngIf="isEditStudent === false; else selectMajorBlock"
+                            type="text"
+                            formControlName = "major"
+                            [ngClass]="['form-control','custom-form-control','custom-input','locked']"
+                            [readonly]="true"
+                            id="major"
+                        >
+                        <ng-template #selectMajorBlock>
+                            <select 
+                                formControlName="major"
+                                id="major"
+                                [ngClass]="['form-control','custom-form-control','custom-select']"
+                            >
+                                <option *ngFor="let major of studentMajors" value="{{ major }}">{{ major }}</option>
+                            </select>
+                        </ng-template>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label"  for="faculty">Khoa</label>
+                        <input 
+                            *ngIf="isEditStudent === false; else selectFacultyBlock"
+                            type="text"
+                            formControlName = "faculty"
+                            [ngClass]="['form-control','custom-form-control','custom-input','locked']"
+                            [readonly]="true"
+                            id="faculty"
+                        >
+                        <ng-template #selectFacultyBlock>
+                            <select 
+                                formControlName="faculty" 
+                                id="faculty" 
+                                [ngClass]="['form-control','custom-form-control','custom-select']"
+                            >
+                                <option *ngFor="let faculty of studentFaculties" value="{{ faculty }}">{{ faculty }}</option>
+                            </select>
+                        </ng-template>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label"  for="class">Lớp</label>
+                        <input 
+                            *ngIf="isEditStudent === false; else selectClassBlock"
+                            type="text"
+                            formControlName = "class"
+                            [ngClass]="['form-control','custom-form-control','custom-input','locked']"
+                            [readonly]="true"
+                            id="class"
+                        >
+                        <ng-template #selectClassBlock>
+                            <select 
+                                formControlName="class" 
+                                id="class" 
+                                [ngClass]="['form-control','custom-form-control','custom-select']"
+                            >
+                                <option *ngFor="let class of studentClasses" value="{{ class }}">{{ class }}</option>
+                            </select>
+                        </ng-template>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label"  for="userType">Loại người dùng</label>
+                        <input 
+                            *ngIf="isEditStudent === false; else selectUserTypeBlock"
+                            type="text"
+                            formControlName = "userType"
+                            [ngClass]="['form-control','custom-form-control','custom-input','locked']"
+                            [readonly]="true"
+                            id="userType"
+                        >
+                        <ng-template #selectUserTypeBlock>
+                            <select 
+                                formControlName="userType" 
+                                id="userType" 
+                                [ngClass]="['form-control','custom-form-control','custom-select']"
+                            >
+                                <option *ngFor="let type of studentUserTypes" value="{{ type }}">{{ type }}</option>
+                            </select>
+                        </ng-template>
+                    </div>
+                </div><!-- col -->
+            </div><!-- row -->
+
+            <div class="row txt-center">
+                <div class="col">
+                    <button 
+                        [ngClass]="['iblck','btn','btn-success']"
+                        (click)="isEditStudent = !isEditStudent" 
+                        [disabled]="isEditStudent === false"
+                    >
+                        Cập nhật thông tin Sinh viên
+                    </button>
+                </div>
+            </div>
+        </form><!--  formGroup__Student -->
+    </section>
+
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-8"><h2>Thông tin Đoàn viên</h2></div>
+            <div class="col-4 txt-right">
+                <button 
+                    (click)="isEditMember = !isEditMember" 
+                    [disabled]="isEditMember === true" 
+                    [ngClass]="['btn','btn-info']"
+                >
+                    <fa-icon [icon]="editIcon"></fa-icon>
+                </button>
+            </div>
+        </div><!-- row -->
+
+        <form [formGroup]="formGroupMember" >
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label class="custom-label"  for="unionMission">Công tác Đoàn</label>
+                        <input 
+                            type="text" 
+                            formControlName="unionMission" 
+                            id="unionMission" 
+                            [ngClass]="['form-control','custom-form-control','custom-input',isEditMember === false ? 'locked' : '']"
+                            [readonly]="!isEditMember"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label"  for="position">Chức vụ</label>
+                        <input 
+                            *ngIf="isEditMember === false; else selectPositionBlock"
+                            type="text"
+                            formControlName="position"
+                            id="position"
+                            [ngClass]="['form-control','custom-form-control','custom-input',isEditMember === false ? 'locked' : '']"
+                            [readonly]="!isEditMember"
+                        >
+                        <ng-template #selectPositionBlock>
+                            <select 
+                                formControlName="position" 
+                                id="position" 
+                                [ngClass]="['form-control','custom-form-control','custom-select']"
+                            >
+                                <option *ngFor="let position of memberPositions" value="{{ position }}">
+                                    {{ position }}
+                                </option>
+                            </select>
+                        </ng-template>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label"  for="unionJoinDate">Ngày vào Đoàn</label>
+                        <input 
+                            type="date" 
+                            formControlName="unionJoinDate" 
+                            id="unionJoinDate" 
+                            [ngClass]="['form-control','custom-form-control','custom-input',isEditMember === false ? 'locked' : '']"
+                            [readonly]="!isEditMember" 
+                        >
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label class="custom-label"  for="area">Khu vực</label>
+                        <input 
+                            type="text" 
+                            formControlName="area" 
+                            id="area" 
+                            [ngClass]="['form-control','custom-form-control','custom-input',isEditMember === false ? 'locked' : '']"
+                            [readonly]="!isEditMember" 
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label"  for="partyJoinDate">Ngày vào Đảng</label>
+                        <input 
+                            type="date" 
+                            formControlName="partyJoinDate" 
+                            id="partyJoinDate" 
+                            [ngClass]="['form-control','custom-form-control','custom-input',isEditMember === false ? 'locked' : '']"
+                            [readonly]="!isEditMember" 
+                        >
+                    </div>
+                </div>
+            </div><!-- row -->
+            <div class="row">
+                <div class="col-12 form-group txt-center">
+                    <button 
+                        type="submit" 
+                        [ngClass]="['btn','btn-success']" 
+                        (click)="isEditMember = !isEditMember" 
+                        [disabled]=" isEditMember === false"
+                    >
+                        Cập nhật thông tin Đoàn viên
+                    </button>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>

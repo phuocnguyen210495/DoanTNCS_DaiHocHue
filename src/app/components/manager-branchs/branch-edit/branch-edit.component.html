@@ -1,0 +1,155 @@
+<div class="blck w80 page--manager branch-add">
+    <h1 class="page_title">Sửa thông tin chi đoàn</h1>
+    <div class="chs--shadow page_content">
+        <div class="row">
+            <!-- Select group -->
+            <div class="col-xl-4 col-lg-5 col-md-12 col-sm-12 col-12 ">
+                <form [formGroup]="fg_select">
+                    <div class="form-group emd esm exs">
+                        <img [src]="display_picture">
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label" for="fc_faculty">Khoa</label>
+                        <select
+                            id="fc_faculty"
+                            class="form-control custom-form-control custom-select"
+                            formControlName="fc_faculty"
+                            (change)="filterClasses()"
+                        >
+                            <option *ngFor="let f of data_faculties" value="{{ f.f_id }}">{{ f.f_name }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label" for="fc_class">Lớp</label>
+                        <select
+                            id="fc_class"
+                            class="form-control custom-form-control custom-select"
+                            formControlName="fc_class"
+                            (change)="filterMembers()"
+                        >
+                            <option *ngFor="let c of filtered_classes" value="{{ c.c_id }}">{{ c.c_name }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label" for="fc_member">Đoàn viên</label>
+                        <select
+                            id="fc_member"
+                            class="form-control custom-form-control custom-select"
+                            formControlName="fc_member"
+                        >
+                            <option *ngFor="let m of filtered_members" value="{{ m.m_id }}">{{ m.m_studentcode + ' - ' + m.m_lastname + ' ' + m.m_middlename + ' ' + m.m_firstname }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group txt-right">
+                        <button 
+                            class="btn btn-add"
+                            (click)="addMember()"
+                        >
+                            Thêm đoàn viên 
+                            <fa-icon [icon]="icon_arrow_right" class="esm exs emd"></fa-icon>
+                            <fa-icon [icon]="icon_arrow_down" class="exl elg "></fa-icon>
+                        </button>
+                    </div>
+                </form>
+            </div><!-- end of select group -->
+
+            <!-- New branch -->
+            <div class="col-xl-8 col-lg-7 col-md-12 col-sm-12 col-12">
+                <form [formGroup]="fg_newbranch">
+                    <div class="form-group">
+                        <div class="faketable">
+                            <div class="esm exs thead">
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-3 col-md-3 th">MSSV</div>
+                                    <div class="col-xl-2 col-lg-3 col-md-3 th">Họ và tên</div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 th">Lớp</div>
+                                    <div class="col-xl-3 elg emd th">Khoa</div>
+                                    <div class="col-xl-2 col-lg-3 col-md-3 th"></div>
+                                </div>
+                            </div>
+                            <div class="exl elg emd thead">
+                                <div class="row">
+                                    <div class="col-12 th">
+                                        Danh sách đoàn viên 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tbody" *ngIf="isNotNull(listMembers.controls) === true; else no_member_block">
+                                <div class="row marg0 tr" *ngFor="let m of display_members.controls; let i = index" (mouseover)="loadPicture(m.get('m_avatar').value)">
+                                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12 td">
+                                        <p><strong class="exl elg emd">Mã số sinh viên : </strong>{{ m.get('m_studentcode').value }}</p>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12 td">
+                                        <p><strong class="exl elg emd">Họ và tên : </strong>{{ m.get('m_fullname').value }}</p>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 td">
+                                        <p><strong class="exl elg emd">Lớp : </strong>{{ m.get('m_classname').value }}</p></div>
+                                    <div class="col-xl-3 elg emd col-sm-12 col-12 td">
+                                        <p><strong class="exl elg emd">Khoa : </strong>{{ m.get('m_facultyname').value }}</p>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12 td">
+                                        <button class="btn btn-danger" (click)="removeMember(i)">Xóa</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #no_member_block>
+                                <div class="tbody">
+                                    <div class="row marg0 tr nohover">
+                                        <div class="col-12 td">
+                                            <p>Hiện chưa có đoàn viên nào trong danh sách này.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div><!-- end of form-group -->
+
+                    <div class="form-group">
+                        <label class="custom-label" for="fc_leader">Chi đoàn trưởng</label>
+                        <select
+                            *ngIf="isNotNull(listMembers.controls) === true ; else elseSelectBlock"
+                            id="fc_leader"
+                            formControlName="fc_leader"
+                            class="form-control custom-form-control custom-select"
+                        >
+                            <option *ngFor="let m of display_members.controls" value="{{ m.get('m_id').value }}">
+                                {{ m.get('m_studentcode').value + ' - ' + m.get('m_fullname').value }}
+                            </option>
+                        </select>
+                        <ng-template #elseSelectBlock>
+                            <input
+                                type="text"
+                                id="fc_leader"
+                                formControlName="fc_leader"
+                                class="form-control custom-form-control custom-input locked"
+                                readonly
+                            >
+                        </ng-template>
+                    </div><!-- end of form-group -->
+
+                    <div class="form-group">
+                        <label class="custom-label" for="fc_name">Tên chi đoàn</label>
+                        <input 
+                            id="fc_name"
+                            formControlName="fc_name"
+                            class="form-control custom-form-control custom-input"
+                        >
+                    </div><!-- end of form-group -->
+                </form>
+            </div>
+            <!-- end of new branch -->
+
+            <div class="col-12 txt-center btn-footer">
+                <a class="btn btn-secondary" [routerLink]="['/branchs']">Hủy</a>
+                <button 
+                    class="btn btn-success"
+                    data-toggle="modal"
+                    data-target="#editBranchSuccess"
+                >
+                    Cập nhật thông tin
+                </button>
+            </div>
+            <app-branch-edit-success></app-branch-edit-success>
+        </div><!-- end of row -->
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-2 col-lg-2 col-md-2 esm exs padd0 logo">
+                <img src="/assets/imgs/logodoan.png">
+            </div>
+            <div class="col-xl-5 col-lg-5 col-md-10 col-sm-12 col-12 padd0 texts">
+                <div class="w100 align--center">
+                    <h1>
+                        Đoàn 
+                        <span class="esm exs">thanh niên cộng sản</span>
+                        <span class="exl elg emd">TNCS</span>
+                        Hồ Chí Minh
+                    </h1>
+                    <h2>Trường Du lịch - Đại học Huế</h2>
+                    <div class="languages">
+                        <a 
+                            [routerLink]="['dashboard']" 
+                            class="chs--shadow lang lang--vi" 
+                            [ngClass]="{'active' : language == 'vi'}"
+                            (click)="language = 'vi'"
+                        ></a>
+                        <a 
+                            [routerLink]="['dashboard']" 
+                            class="chs--shadow lang lang--en" 
+                            [ngClass]="{'active' : language == 'en'}"
+                            (click)="language = 'en'"
+                        ></a>
+                        <a 
+                            [routerLink]="['dashboard']" 
+                            class="chs--shadow lang lang--fr" 
+                            [ngClass]="{'active' : language == 'fr'}"
+                            (click)="language = 'fr'"
+                        ></a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xl5 col-lg-5 emd esm exs padd0 images">
+                <img src="/assets/imgs/hoatdongdoan1.jpg" class="z1 chs--shadow toRight00">
+                <img src="/assets/imgs/hoatdongdoan2.jpg" class="z2 chs--shadow toRight45">
+                <img src="/assets/imgs/hoatdongdoan3.jpg" class="z3 chs--shadow toRight90">
+            </div>
+        </div>
+    </div>
+</header>

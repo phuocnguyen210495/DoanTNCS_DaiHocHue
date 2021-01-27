@@ -1,0 +1,10 @@
+<div class="widget">
+    <p class="title">{{ widget_title }}</p>
+    <div class="content">
+       <ul>
+            <li *ngFor="let info of report; let i = index">
+                <p><strong>{{ info.displayText }} : </strong>{{ info.value }}</p>
+            </li>
+       </ul>
+    </div>
+</div>
